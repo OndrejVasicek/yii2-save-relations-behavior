@@ -289,8 +289,8 @@ class SaveRelationsBehavior extends Behavior
         }
         if (($relationModel instanceof BaseActiveRecord) && is_array($data)) {
             $relationModel->setAttributes($data);
-            if ($relationModel->hasMethod('loadRelations')) {
-                $relationModel->loadRelations($data);
+            if ($relationModel->hasMethod('loadRelationsForSave')) {
+                $relationModel->loadRelationsForSave($data);
             }
 
         }
@@ -720,7 +720,7 @@ class SaveRelationsBehavior extends Behavior
      * @param array $data
      * @throws InvalidConfigException
      */
-    public function loadRelations($data)
+    public function loadRelationsForSave($data)
     {
         /** @var BaseActiveRecord $owner */
         $owner = $this->owner;
